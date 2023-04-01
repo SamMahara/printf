@@ -1,0 +1,28 @@
+#include <stdarg.h>
+#include <stdio.h>
+#include "main.h"
+
+/**
+ * _printf - prints output according to a format
+ * @format: character string containing zero or more directives
+ *
+ * Return: the number of characters printed (excluding the null byte used to
+ * end output to strings), or -1 if an error occurs.
+ */
+int _printf(const char *format, ...)
+{
+va_list args;
+int printed_chars = 0;
+
+va_start(args, format);
+
+if (!format || (format[0] == '%' && format[1] == '\0'))
+	return (-1);
+
+printed_chars = format_parser(format, args);
+
+va_end(args);
+
+return (printed_chars);
+}
+
